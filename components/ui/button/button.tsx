@@ -59,8 +59,8 @@ const RADIUS_STYLES = {
 };
 
 const VARIANT_STYLES = {
-  primary: "bg-primary text-[#ffffff]",
-  ghost: "bg-[#ffffff] text-[#2962FF]",
+  primary: "bg-primary text-[#FEFEFF]",
+  ghost: "bg-[#FEFEFF] text-[#FEFEFF]",
 };
 
 const Button = ({

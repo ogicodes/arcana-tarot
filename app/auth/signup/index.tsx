@@ -1,13 +1,14 @@
 import { View, Text, SafeAreaView } from "react-native";
-import { Link, useRouter } from "expo-router";
-import { useState } from "react";
-import { Input } from "@/components/ui/input/input";
-import { CheckBox } from "@/components/ui/checkbox/checkbox";
 import { Button } from "@/components/ui/button/button";
+import { Link, useRouter } from "expo-router";
+import { Input } from "@/components/ui/input/input";
+import { useState } from "react";
+import { CheckBox } from "@/components/ui/checkbox/checkbox";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isChecked, setIsChecked] = useState(false);
 
   const router = useRouter();
@@ -19,11 +20,11 @@ export default function SignIn() {
           Arcana
         </Text>
       </View>
-      <View className="flex items-start justify-center w-full mt-14 ">
+      <View className="flex items-start justify-center w-full mt-10 ">
         <Text className="text-4xl pl-4 font-bold text-[#FEFEFF] font-mono mx-8 mb-2">
-          Log in
+          Sign Up
         </Text>
-        <View className="flex flex-row items-center justify-start w-full mb-8 mx-12">
+        <View className="flex flex-row items-center justify-start w-full my-2 mx-12">
           <Text className="text-md font-regular text-[#DDDCDB] font-mono mb-2">
             To start using
           </Text>
@@ -31,7 +32,7 @@ export default function SignIn() {
             Arcana
           </Text>
         </View>
-        <View className="flex flex-col items-center justify-center w-full my-10">
+        <View className="flex flex-col items-center justify-center w-full mt-6">
           <Text className="text-md font-regular text-[#DDDCDB] font-mono mb-2 w-full ml-20">
             Email
           </Text>
@@ -56,17 +57,26 @@ export default function SignIn() {
             value={password}
             onChangeText={setPassword}
           />
-          <View className="flex flex-row justify-around w-full mt-2 items-center">
+          <Text className="text-md font-regular text-[#DDDCDB] font-mono mt-8 mb-2 w-full ml-20">
+            Confirm Password
+          </Text>
+          <Input
+            placeholder="Confirm Password"
+            size="md"
+            radius="lg"
+            style="w-[80%]"
+            type="password"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+        </View>
+        <View className="ml-12 mt-4">
           <CheckBox
-            label="Remember me"
+            label="I accept the Terms of Use & Privacy Policy"
             isChecked={isChecked}
             onToggle={() => setIsChecked(!isChecked)}
             size="md"
-            />
-            <Link href="/auth/forgotpassword" className="text-md font-regular text-[#DDDCDB] font-mono">
-                Forgot Password?
-            </Link>
-          </View>
+          />
         </View>
       </View>
       <View className="flex items-center justify-center w-full my-4">
@@ -79,7 +89,7 @@ export default function SignIn() {
           variant="primary"
           onClick={() => router.push("/(tabs)/")}
         >
-          Log in
+          Sign Up
         </Button>
         <Button
           styles="w-[80%]"
@@ -94,17 +104,17 @@ export default function SignIn() {
         </Button>
         <View className="flex flex-row items-center justify-center w-full my-4">
           <Text className="text-md font-regular text-[#757575] font-mono mb-2">
-            Dont have account?
+            Already have account?
           </Text>
           <Link
-            href="/auth/signup"
+            href="/auth/signin"
             className="text-lg pl-2 font-regular text-[#FEFEFF] font-mono mb-2"
           >
-            Sign Up
+            Log In
           </Link>
         </View>
       </View>
-      <View className="flex flex-row items-center justify-between w-full mt-[36px] border-t-[1px] pt-4 border-[#DDDCDB]">
+      <View className="flex flex-row items-center justify-between w-full mt-4 border-t-[1px] pt-4 border-[#DDDCDB]">
         <Text className="text-sm px-4 font-bold text-[#FEFEFF] font-glassAntigua mb-2">
           All Wrongs Reversed.
         </Text>
