@@ -4,6 +4,7 @@ import 'react-native-reanimated';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as SystemUI from 'expo-system-ui';
+import React from 'react';
 
 
 

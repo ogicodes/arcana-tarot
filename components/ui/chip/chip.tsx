@@ -1,3 +1,4 @@
+import React from "react";
 import {
     TouchableOpacity,
     Text
@@ -21,14 +22,14 @@ import {
       text: 'text-primary'
     },
     solid: {
-      container: 'bg-primary',
+      container: 'border-[#DDDCDB] border-[1px]',
       text: 'text-white'
     }
   };
   
   const SIZE_STYLES = {
     md: {
-      container: 'px-4 py-1',
+      container: 'px-2 py-1',
       text: 'font-inter text-xs tracking-tight'
     }
   };

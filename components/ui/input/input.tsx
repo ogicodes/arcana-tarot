@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { TouchableOpacity, View, TextInput } from "react-native";
-import { Eye, EyeOff } from "lucide-react-native";
+import { Eye, EyeOff, Search } from "lucide-react-native";
+import React from "react";
 
 type Size = "md" | "lg";
 type Radius = "sm" | "md" | "lg" | "full";
-type Type = "text" | "password";
+type Type = "text" | "password" | "search";
 
 interface InputProps {
   value: string;
@@ -20,6 +21,7 @@ const BASE_STYLE = {
   container: "bg-[#EEEEEE] border-[1px] border-[#E0E0E0]",
   text: "font-inter text-base text-[#BDBDBD]",
   active: "bg-[#EEEEEE] border-[1px] border-[#2962FF]",
+  search: "bg-transparent border-none",
 };
 
 const SIZE_STYLE = {
@@ -101,6 +103,28 @@ const Input = ({
           </View>
         </View>
       );
+      case "search":
+        return (
+          <View
+            className={
+              isFocused
+                ? `${BASE_STYLE.search} ${radiusStyle} ${style} flex-row items-center`
+                : `${BASE_STYLE.search} ${radiusStyle} ${style} flex-row items-center`
+            }
+          >
+            <Search size={20} className="text-gray-600 absolute -left-3 top-[18px]" />
+            <TextInput
+              className={`${sizeStyles} text-xl text-gray-600`}
+              value={value}
+              onChangeText={onChangeText}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              placeholder={placeholder}
+            />
+          </View>
+        );
+  
+
   }
 };
 

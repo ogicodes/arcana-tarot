@@ -1,4 +1,3 @@
-
 import chariot from '../../public/images/majorarcana/CHARIOT.png'
 import death from '../../public/images/majorarcana/DEATH.png'
 import devil from '../../public/images/majorarcana/DEVIL.png'
@@ -72,7 +71,7 @@ const cardsArray: (keyof typeof cards)[] = [
     'world'
 ]
 
-export function getRandomCard() {
+export function getRandomMajorCard() {
     const card = cardsArray[Math.floor(Math.random() * cardsArray.length)]
     return cards[card]
 }

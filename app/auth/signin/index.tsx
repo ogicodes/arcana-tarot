@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input/input";
 import { CheckBox } from "@/components/ui/checkbox/checkbox";
 import { Button } from "@/components/ui/button/button";
+import React from "react";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
