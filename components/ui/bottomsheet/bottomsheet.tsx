@@ -1,21 +1,39 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import React, { useMemo, forwardRef } from "react";
+import { Text } from "react-native";
+import {
+  BottomSheetView,
+  BottomSheetBackdrop,
+  BottomSheetModal,
+} from "@gorhom/bottom-sheet";
+import { Button } from "@/components/ui/button/button";
 
-export default function CustomBottomSheet({bottomSheetRef}: {bottomSheetRef: BottomSheet}) {
-
-
-  // renders
+function renderBackdrop(props: any) {
   return (
-    <View className='flex-1 p-6 bg-gray-500'>
-      <BottomSheet
-        ref={bottomSheetRef}
-        onChange={handleSheetChanges}
-      >
-        <BottomSheetView className='flex-1 items-center'>
-          <Text>Awesome 🎉</Text>
-        </BottomSheetView>
-      </BottomSheet>
-    </View>
+    <BottomSheetBackdrop
+      {...props}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      opacity={0.4}
+      pressBehavior="close"
+    />
   );
-};
+}
+
+const CustomBottomSheet = forwardRef((props: any, ref: any) => {
+  const snapPoints = useMemo(() => ["25%", "90%"], []);
+
+  return (
+    <BottomSheetModal
+      ref={ref}
+      backdropComponent={renderBackdrop}
+      snapPoints={snapPoints}
+      index={1}
+    >
+      <BottomSheetView>
+        {props.children}
+      </BottomSheetView>
+    </BottomSheetModal>
+  );
+});
+
+export default CustomBottomSheet;
