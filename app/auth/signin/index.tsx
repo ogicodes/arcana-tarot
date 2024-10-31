@@ -2,16 +2,37 @@ import { View, Text, SafeAreaView } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import { Input } from "@/components/ui/input/input";
-import { CheckBox } from "@/components/ui/checkbox/checkbox";
 import { Button } from "@/components/ui/button/button";
 import React from "react";
+import { setToken } from "@/auth/auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isChecked, setIsChecked] = useState(false);
 
   const router = useRouter();
+
+  async function handleSubmit() {
+    try {
+      // Call the login API here
+      const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/auth/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      })
+      const data = await response.json();
+      if (response.ok) {
+        // Save the token to the secure store
+        await setToken(data);
+        // Redirect to the home page
+        router.push("/(tabs)");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <SafeAreaView className="flex items-start justify-start bg-[#1E1E1E] h-full">
@@ -57,13 +78,7 @@ export default function SignIn() {
             value={password}
             onChangeText={setPassword}
           />
-          <View className="flex flex-row justify-around w-full mt-2 items-center">
-          <CheckBox
-            label="Remember me"
-            isChecked={isChecked}
-            onToggle={() => setIsChecked(!isChecked)}
-            size="md"
-            />
+          <View className="flex flex-col w-full mt-2 items-end mr-20">
             <Link href="/auth/forgotpassword" className="text-md font-regular text-[#DDDCDB] font-mono">
                 Forgot Password?
             </Link>
@@ -78,20 +93,9 @@ export default function SignIn() {
           size="xl"
           radius="lg"
           variant="primary"
-          onClick={() => router.push("/(tabs)/")}
+          onClick={handleSubmit}
         >
           Log in
-        </Button>
-        <Button
-          styles="w-[80%]"
-          textSize="lg"
-          color="secondary"
-          size="xl"
-          radius="lg"
-          variant="primary"
-          onClick={() => router.push("/(tabs)/")}
-        >
-          Continue with Google
         </Button>
         <View className="flex flex-row items-center justify-center w-full my-4">
           <Text className="text-md font-regular text-[#757575] font-mono mb-2">

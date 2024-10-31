@@ -3,8 +3,23 @@ import React from "react";
 import { BlurView } from 'expo-blur';
 import { LayoutDashboard, Users2Icon, BookOpenText, Calendar, UserCircle2 } from "lucide-react-native";
 import { View } from "react-native";
+import { getToken } from "@/auth/auth";
+import { router } from "expo-router";
+import { useEffect } from "react";
 
 export default function TabLayout() {
+
+  async function checkAuth() {
+    const token = await getToken();
+    if (!token) {
+      return router.push("/auth/signin");
+    }
+  }
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   return (
     <Tabs
       screenOptions={{

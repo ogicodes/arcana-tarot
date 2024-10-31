@@ -8,16 +8,7 @@ import React, { useRef } from "react";
 import CustomBottomSheet from "@/components/ui/bottomsheet/bottomsheet";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import SpreadCard from "@/components/ui/spreadcard/spreadcard";
-
-type SpreadProps = {
-  title: string;
-
-  description: string;
-
-  image: any;
-
-  modal: IModalContent;
-};
+import { Button } from "@/components/ui/button/button";
 
 interface ISpread {
   title: string;
@@ -69,113 +60,113 @@ export const modalContents: IModalContent[] = [
     description:
       "The Past-Present-Future spread offers insight into your journey by revealing past influences, current situations, and potential outcomes, providing a clear snapshot of your path ahead.",
     cards: [
-        {
-            title: "Past",
-            description:
-            "The Past card represents events or influences that have shaped your current situation. It offers insight into past experiences that may be affecting your present circumstances.",
-        },
-        {
-            title: "Present",
-            description:
-            "The Present card reveals your current situation and the energies surrounding you. It provides clarity on your current state of being and the challenges or opportunities you may be facing.",
-        },
-        {
-            title: "Future",
-            description:
-            "The Future card offers guidance on potential outcomes and the path ahead. It helps you navigate future challenges and make informed decisions to shape your destiny.",
-        },
-        ],
+      {
+        title: "Past",
+        description:
+          "The Past card represents events or influences that have shaped your current situation. It offers insight into past experiences that may be affecting your present circumstances.",
+      },
+      {
+        title: "Present",
+        description:
+          "The Present card reveals your current situation and the energies surrounding you. It provides clarity on your current state of being and the challenges or opportunities you may be facing.",
+      },
+      {
+        title: "Future",
+        description:
+          "The Future card offers guidance on potential outcomes and the path ahead. It helps you navigate future challenges and make informed decisions to shape your destiny.",
+      },
+    ],
   },
   {
     title: "5 Card Spread",
     description:
       "The 5-card spread provides a comprehensive view by exploring past influences, current circumstances, future outcomes, challenges, and guidance. It offers a balanced reading to help navigate obstacles and make informed decisions.",
     cards: [
-        {
-            title: "Past",
-            description:
-            "The Past card represents events or influences that have shaped your current situation. It offers insight into past experiences that may be affecting your present circumstances.",
-        },
-        {
-            title: "Present",
-            description:
-            "The Present card reveals your current situation and the energies surrounding you. It provides clarity on your current state of being and the challenges or opportunities you may be facing.",
-        },
-        {
-            title: "Future",
-            description:
-            "The Future card offers guidance on potential outcomes and the path ahead. It helps you navigate future challenges and make informed decisions to shape your destiny.",
-        },
-        {
-            title: "Challenges",
-            description:
-            "The Challenges card highlights obstacles or difficulties you may encounter on your journey. It offers insight into potential roadblocks and how to overcome them.",
-        },
-        {
-            title: "Guidance",
-            description:
-            "The Guidance card provides advice and support to help you navigate challenges and make decisions. It offers wisdom and direction to guide you on your path.",
-        },
-        ],
+      {
+        title: "Past",
+        description:
+          "The Past card represents events or influences that have shaped your current situation. It offers insight into past experiences that may be affecting your present circumstances.",
+      },
+      {
+        title: "Present",
+        description:
+          "The Present card reveals your current situation and the energies surrounding you. It provides clarity on your current state of being and the challenges or opportunities you may be facing.",
+      },
+      {
+        title: "Future",
+        description:
+          "The Future card offers guidance on potential outcomes and the path ahead. It helps you navigate future challenges and make informed decisions to shape your destiny.",
+      },
+      {
+        title: "Challenges",
+        description:
+          "The Challenges card highlights obstacles or difficulties you may encounter on your journey. It offers insight into potential roadblocks and how to overcome them.",
+      },
+      {
+        title: "Guidance",
+        description:
+          "The Guidance card provides advice and support to help you navigate challenges and make decisions. It offers wisdom and direction to guide you on your path.",
+      },
+    ],
   },
   {
     title: "7 Card Spread",
     description:
       "The 7-card spread delves deep into your situation, revealing past and present influences, future outcomes, hidden factors, and external forces. It offers advice and guidance for navigating the challenges ahead, providing a holistic view for informed decision-making.",
     cards: [
-        {
-            title: "Past",
-            description:
-            "The Past card represents events or influences that have shaped your current situation. It offers insight into past experiences that may be affecting your present circumstances.",
-        },
-        {
-            title: "Present",
-            description:
-            "The Present card reveals your current situation and the energies surrounding you. It provides clarity on your current state of being and the challenges or opportunities you may be facing.",
-        },
-        {
-            title: "Future",
-            description:
-            "The Future card offers guidance on potential outcomes and the path ahead. It helps you navigate future challenges and make informed decisions to shape your destiny.",
-        },
-        {
-            title: "Hidden Factors",
-            description:
-            "The Hidden Factors card uncovers unseen influences or factors that may be affecting your situation. It offers insight into hidden aspects that may impact your decisions or outcomes.",
-        },
-        {
-            title: "External Forces",
-            description:
-            "The External Forces card represents external influences or energies that may be affecting your situation. It offers guidance on how to navigate external factors and make informed choices.",
-        },
-        {
-            title: "Advice",
-            description:
-            "The Advice card provides wisdom and guidance to help you make informed decisions and navigate challenges. It offers support and direction to guide you on your path.",
-        },
-        {
-            title: "Outcome",
-            description:
-            "The Outcome card reveals the final result or potential outcome of your situation. It offers insight into the resolution of your journey and the lessons learned along the way.",
-        },
-        ],
+      {
+        title: "Past",
+        description:
+          "The Past card represents events or influences that have shaped your current situation. It offers insight into past experiences that may be affecting your present circumstances.",
+      },
+      {
+        title: "Present",
+        description:
+          "The Present card reveals your current situation and the energies surrounding you. It provides clarity on your current state of being and the challenges or opportunities you may be facing.",
+      },
+      {
+        title: "Future",
+        description:
+          "The Future card offers guidance on potential outcomes and the path ahead. It helps you navigate future challenges and make informed decisions to shape your destiny.",
+      },
+      {
+        title: "Hidden Factors",
+        description:
+          "The Hidden Factors card uncovers unseen influences or factors that may be affecting your situation. It offers insight into hidden aspects that may impact your decisions or outcomes.",
+      },
+      {
+        title: "External Forces",
+        description:
+          "The External Forces card represents external influences or energies that may be affecting your situation. It offers guidance on how to navigate external factors and make informed choices.",
+      },
+      {
+        title: "Advice",
+        description:
+          "The Advice card provides wisdom and guidance to help you make informed decisions and navigate challenges. It offers support and direction to guide you on your path.",
+      },
+      {
+        title: "Outcome",
+        description:
+          "The Outcome card reveals the final result or potential outcome of your situation. It offers insight into the resolution of your journey and the lessons learned along the way.",
+      },
+    ],
   },
   {
     title: "Yes/No Spread",
     description:
       "The Yes/No spread offers a simple yet powerful answer to your question. The cards reveal a clear 'yes' or 'no,' providing guidance and clarity for your query.",
     cards: [
-        {
-            title: "Yes",
-            description:
-            "The Yes card signifies a positive answer to your question. It indicates that the answer is 'yes' and offers guidance and support for your query.",
-        },
-        {
-            title: "No",
-            description:
-            "The No card signifies a negative answer to your question. It indicates that the answer is 'no' and provides insight into the situation or factors influencing the outcome.",
-        },
-        ],
+      {
+        title: "Yes",
+        description:
+          "The Yes card signifies a positive answer to your question. It indicates that the answer is 'yes' and offers guidance and support for your query.",
+      },
+      {
+        title: "No",
+        description:
+          "The No card signifies a negative answer to your question. It indicates that the answer is 'no' and provides insight into the situation or factors influencing the outcome.",
+      },
+    ],
   },
 ];
 
@@ -224,20 +215,36 @@ const Spread = ({
       </TouchableOpacity>
       <CustomBottomSheet ref={bottomSheetRef}>
         <ScrollView className="mb-20">
-        <View className="flex flex-col justify-between items-center mx-2 mb-10">
-          <Text className="text-4xl text-start text-[#121212] font-glassAntigua mt-4">
-            {modal.title}
-          </Text>
-            {modal.cards && modal.cards.map((card, index) => ( 
-                <SpreadCard key={index.toString()} title={card.title} description={card.description} />
-            ))}
-          <Text className="text-3xl text-start text-[#121212] font-glassAntigua mt-4">
-            Deep Dive
-          </Text>
-          <Text className="text-xl text-start text-[#121212] font-glassAntigua mt-4">
-            {modal.description}
-          </Text>
-        </View>
+          <View className="flex flex-col justify-between items-center mx-2">
+            <Text className="text-4xl text-start text-[#121212] font-glassAntigua mt-4">
+              {modal.title}
+            </Text>
+            {modal.cards &&
+              modal.cards.map((card, index) => (
+                <SpreadCard
+                  cardNumber={(index + 1).toString()}
+                  title={card.title}
+                  description={card.description}
+                />
+              ))}
+            <Text className="text-3xl text-start text-[#121212] font-glassAntigua mt-4">
+              Deep Dive
+            </Text>
+            <Text className="text-xl text-start text-[#121212] font-glassAntigua mt-4 mx-2">
+              {modal.description}
+            </Text>
+          </View>
+          <Button
+            styles="w-[80%] flex mx-10 mt-4 mb-14"
+            textSize="lg"
+            color="secondary"
+            size="xl"
+            radius="lg"
+            variant="primary"
+            onClick={() => console.log("Save this to database")}
+          >
+            Save to Journal
+          </Button>
         </ScrollView>
       </CustomBottomSheet>
     </>

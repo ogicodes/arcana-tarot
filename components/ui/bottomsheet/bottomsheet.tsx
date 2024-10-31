@@ -1,11 +1,9 @@
 import React, { useMemo, forwardRef } from "react";
-import { Text } from "react-native";
 import {
   BottomSheetView,
   BottomSheetBackdrop,
   BottomSheetModal,
 } from "@gorhom/bottom-sheet";
-import { Button } from "@/components/ui/button/button";
 
 function renderBackdrop(props: any) {
   return (

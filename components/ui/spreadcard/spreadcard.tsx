@@ -4,16 +4,16 @@ import React from "react";
 
 
 interface SpreadCardProps {
-    key: string;
+    cardNumber: string;
     title: string;
     description: string;
 }
 
-const SpreadCard: React.FC<SpreadCardProps> = ({ key, title, description }) => {
+const SpreadCard: React.FC<SpreadCardProps> = ({ cardNumber, title, description }) => {
   return (
     <View className="flex flex-row justify-between items-center mx-2 my-8">
       <Text className="text-4xl text-start text-[#121212] font-glassAntigua">
-        {key}
+        {cardNumber}
       </Text>
       <View className="flex flex-col justify-between items-start pl-10">
         <Text className="text-3xl text-start text-[#121212] font-glassAntigua">

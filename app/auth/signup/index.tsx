@@ -3,15 +3,38 @@ import { Button } from "@/components/ui/button/button";
 import { Link, useRouter } from "expo-router";
 import { Input } from "@/components/ui/input/input";
 import { useState } from "react";
-import { CheckBox } from "@/components/ui/checkbox/checkbox";
+import React from "react";
+import { setToken } from "@/auth/auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [isChecked, setIsChecked] = useState(false);
+  const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
 
   const router = useRouter();
+
+  async function handleSubmit() {
+    try {
+      // Call the login API here
+      const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, name, username }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        // Save the token to the secure store
+        await setToken(data);
+        // Redirect to the home page
+        router.push("/(tabs)");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <SafeAreaView className="flex items-start justify-start bg-[#1E1E1E] h-full">
@@ -33,6 +56,30 @@ export default function SignIn() {
           </Text>
         </View>
         <View className="flex flex-col items-center justify-center w-full mt-6">
+        <Text className="text-md font-regular text-[#DDDCDB] font-mono mb-2 w-full ml-20">
+            Name
+          </Text>
+          <Input
+            placeholder="name"
+            size="md"
+            radius="lg"
+            style="w-[80%] mb-8"
+            type="text"
+            value={name}
+            onChangeText={setName}
+          />
+        <Text className="text-md font-regular text-[#DDDCDB] font-mono mb-2 w-full ml-20">
+            Username
+          </Text>
+          <Input
+            placeholder="username"
+            size="md"
+            radius="lg"
+            style="w-[80%] mb-8"
+            type="text"
+            value={username}
+            onChangeText={setUsername}
+          />
           <Text className="text-md font-regular text-[#DDDCDB] font-mono mb-2 w-full ml-20">
             Email
           </Text>
@@ -57,52 +104,25 @@ export default function SignIn() {
             value={password}
             onChangeText={setPassword}
           />
-          <Text className="text-md font-regular text-[#DDDCDB] font-mono mt-8 mb-2 w-full ml-20">
-            Confirm Password
-          </Text>
-          <Input
-            placeholder="Confirm Password"
-            size="md"
-            radius="lg"
-            style="w-[80%]"
-            type="password"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-          />
+
         </View>
-        <View className="ml-12 mt-4">
-          <CheckBox
-            label="I accept the Terms of Use & Privacy Policy"
-            isChecked={isChecked}
-            onToggle={() => setIsChecked(!isChecked)}
-            size="md"
-          />
+        <View className="ml-12 mt-2">
+          <Text className="text-xs font-thin text-[#DDDCDB] font-mono mb-2">By signing up you accept the Terms of Use & Privacy Policy</Text>
         </View>
       </View>
       <View className="flex items-center justify-center w-full my-4">
         <Button
-          styles="w-[80%] mb-8"
+          styles="w-[80%] mb-2"
           textSize="lg"
           color="secondary"
           size="xl"
           radius="lg"
           variant="primary"
-          onClick={() => router.push("/(tabs)/")}
+          onClick={handleSubmit}
         >
           Sign Up
         </Button>
-        <Button
-          styles="w-[80%]"
-          textSize="lg"
-          color="secondary"
-          size="xl"
-          radius="lg"
-          variant="primary"
-          onClick={() => router.push("/(tabs)/")}
-        >
-          Continue with Google
-        </Button>
-        <View className="flex flex-row items-center justify-center w-full my-4">
+        <View className="flex flex-row items-center justify-center w-full mb-4">
           <Text className="text-md font-regular text-[#757575] font-mono mb-2">
             Already have account?
           </Text>
